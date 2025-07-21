@@ -1,0 +1,8 @@
+# Black Jack Project
+
+# Set values for cards
+king = 10
+jack = 10
+queen = 10
+ace = {"low": 1, "high": 11}
+cards = [2, 3, 4, 5, 6, 7, 8, 9, ace, king, jack, queen]
