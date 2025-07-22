@@ -1,8 +1,40 @@
 # Black Jack Project
+# 🃏 Blackjack Game House Rules:
+# 1. 1️⃣ The deck is unlimited in size.
+# 2. 🚫 There are no jokers.
+# 3. 👑 Jack, Queen, King = 10.
+# 4. 🂡 Ace = 1 or 11.
+# 5. 🖐️ If you have 5 or more cards without busting, you win automatically (🧱 Charlie Rule).
 
-# Set values for cards
+# Side Quest (These quest should complete after the main quest):
+# Add gifs or animations for the rules of Black Jack:
+# 1. Limit Breaker from Final Fantasy
+# 2. Joker from Batman
+# 3. Jack Black the actor, Queen the singer, King from tekken (maybe something more universal)
+# 4. Ace (Look up something universal)
+
+# Main Quest
+#Step 1 Set values for cards
 king = 10
 jack = 10
 queen = 10
 ace = {"low": 1, "high": 11}
 cards = [2, 3, 4, 5, 6, 7, 8, 9, ace, king, jack, queen]
+
+#Step 2
+# Intro
+greeting = input('''Welcome to Sherrard's House of Black Jack. 
+Here are the rules:
+🃏 Sherrard's House Rules:
+1️⃣ The deck is unlimited in size.
+🚫 There are no jokers.
+👑 Jack, Queen, King = 10.
+🂡 Ace = 1 or 11.
+🖐️ If you have 5 or more cards without busting, you win automatically (🧱 Charlie Rule).
+''')
+
+print(greeting)
+
+
+
+
