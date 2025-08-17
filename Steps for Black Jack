@@ -1,0 +1,100 @@
+import random
+# Black Jack Project
+# 🃏 Blackjack Game House Rules:
+# 1. 1️⃣ The deck is unlimited in size.
+# 2. 🚫 There are no jokers.
+# 3. 👑 Jack, Queen, King = 10.
+# 4. 🂡 Ace = 1 or 11.
+# 5. 🖐️ If you have 5 or more cards without busting, you win automatically (🧱 Charlie Rule).
+
+# Side Quest (These quest should complete after the main quest):
+# Add gifs or animations for the rules of Black Jack:
+# 1. Limit Breaker from Final Fantasy
+# 2. Joker from Batman
+# 3. Jack Black the actor, Queen the singer, King from Tekken (maybe something more universal)
+# 4. Ace (Look up something universal)
+
+
+
+# Step 2: Intro
+greeting = """
+  ______   __                                                               __  __         
+ /      \ |  \                                                             |  \|  \        
+|  $$$$$$\| $$____    ______    ______    ______   ______    ______    ____| $$| $$_______ 
+| $$___\$$| $$    \  /      \  /      \  /      \ |      \  /      \  /      $$ \$/       \\
+ \$$    \ | $$$$$$$\|  $$$$$$\|  $$$$$$\|  $$$$$$\ \$$$$$$\|  $$$$$$\|  $$$$$$$  |  $$$$$$$
+ _\$$$$$$\| $$  | $$| $$    $$| $$   \$$| $$   \$$/      $$| $$   \$$| $$  | $$   \$$    \ 
+|  \__| $$| $$  | $$| $$$$$$$$| $$      | $$     |  $$$$$$$| $$      | $$__| $$   _\$$$$$$\\
+ \$$    $$| $$  | $$ \$$     \| $$      | $$      \$$    $$| $$       \$$    $$  |       $$ 
+  \$$$$$$  \$$   \$$  \$$$$$$$ \$$       \$$       \$$$$$$$ \$$        \$$$$$$$   \$$$$$$$ 
+
+
+ __    __                                                                                  
+|  \  |  \                                                                                 
+| $$  | $$  ______   __    __   _______   ______                                           
+| $$__| $$ /      \ |  \  |  \ /       \ /      \                                          
+| $$    $$|  $$$$$$\| $$  | $$|  $$$$$$$|  $$$$$$\                                         
+| $$$$$$$$| $$  | $$| $$  | $$ \$$    \ | $$    $$                                         
+| $$  | $$| $$__/ $$| $$__/ $$ _\$$$$$$\| $$$$$$$$                                         
+| $$  | $$ \$$    $$ \$$    $$|       $$ \$$     \                                         
+ \$$   \$$  \$$$$$$   \$$$$$$  \$$$$$$$   \$$$$$$$                                         
+
+
+            ______                                                                         
+           /      \                                                                        
+  ______  |  $$$$$$\                                                                       
+ /      \ | $$_  \$$                                                                       
+|  $$$$$$\| $$ \                                                                          
+| $$  | $$| $$$$                                                                          
+| $$__/ $$| $$                                                                           
+ \$$    $$| $$                                                                           
+  \$$$$$$  \$$                                                                           
+
+
+ _______   __                      __                 _____                      __        
+|       \ |  \                    |  \               |     \                    |  \       
+| $$$$$$$\| $$  ______    _______ | $$   __           \$$$$$  ______    _______ | $$   __  
+| $$__/ $$| $$ |      \  /       \| $$  /  \            | $$ |      \  /       \| $$  /  \ 
+| $$    $$| $$  \$$$$$$\|  $$$$$$$| $$_/  $$       __   | $$  \$$$$$$\|  $$$$$$$| $$_/  $$ 
+| $$$$$$$\| $$ /      $$| $$      | $$   $$       |  \  | $$ /      $$| $$      | $$   $$  
+| $$__/ $$| $$|  $$$$$$$| $$_____ | $$$$$$\       | $$__| $$|  $$$$$$$| $$_____ | $$$$$$\  
+| $$    $$| $$ \$$    $$ \$$     \| $$  \$$\       \$$    $$ \$$    $$ \$$     \| $$  \$$\ 
+ \$$$$$$$  \$$  \$$$$$$$  \$$$$$$$ \$$   \$$        \$$$$$$   \$$$$$$$  \$$$$$$$ \$$   \$$                                                                                            
+"""
+
+input('''Welcome to Sherrard's House of Black Jack. 
+Here are the rules:
+🃏 Sherrard's House Rules:
+1️⃣ The deck is unlimited in size.
+🚫 There are no jokers.
+👑 Jack, Queen, King = 10.
+🂡 Ace = 1 or 11.
+🖐️ If you have 5 or more cards without busting, you win automatically (🧱 Charlie Rule).
+Press Enter to begin...
+''')
+
+print(greeting)
+# Main Quest
+# Step 1: Set values for cards
+king = 10
+jack = 10
+queen = 10
+ace = 11
+cards = [2, 3, 4, 5, 6, 7, 8, 9, king, jack, queen, ace]
+
+
+# Step 2: select cards
+player_cards = [random.choice(cards), random.choice(cards)]
+computer_cards = [random.choice(cards)]
+
+# Step 3: calculate totals
+player_total = sum(player_cards)
+computer_total = sum(computer_cards)
+
+# Step 4: Show results
+print("🎴 Player’s starting hand:", player_cards, "→ total:", player_total)
+print("🎴 Computer’s starting hand:", computer_cards, "→ total:", computer_total)
+
+
+
+
