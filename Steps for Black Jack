@@ -91,9 +91,26 @@ computer_cards = [random.choice(cards)]
 player_total = sum(player_cards)
 computer_total = sum(computer_cards)
 
-# Step 4: Show results
+# Step 4: Show results of first hand
 print("🎴 Player’s starting hand:", player_cards, "→ total:", player_total)
 print("🎴 Computer’s starting hand:", computer_cards, "→ total:", computer_total)
+
+# Step 5: Ask player for another card
+another_card = input("Type 'y' to get another card, type 'n' to pass:")
+if another_card == 'y':
+    player_cards.append(random.choice(cards))   # safely add new player card
+    player_total = sum(player_cards)  # recalc player total
+    computer_cards.append(random.choice(cards)) # safely add new computer card
+    computer_total = sum(computer_cards) # recalc computer total
+    print("🎴 Player’s hand:", player_cards, "→ total:", player_total) # Player final total
+    print("🎴 Computer’s starting hand:", computer_cards, "→ total:", computer_total) # Computer final total
+
+
+
+
+
+
+
 
 
 
