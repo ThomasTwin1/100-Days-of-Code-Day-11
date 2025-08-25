@@ -1,28 +1,65 @@
+"""
+=====================================================================
+Sherrard's House of Black Jack 🎴
+=====================================================================
+Author: Sherrard Antoine Thomas II
+Date:   26 August 2025
+Version: 1.0
+Course:  100 Days of Python - Day 11 Project
+
+Description:
+------------
+A simple text-based Blackjack game with custom house rules.
+This program:
+- Greets the player with ASCII art and rules.
+- Requires pressing Enter to begin.
+- Implements the following rules:
+    1. The deck is unlimited in size.
+    2. There are no jokers.
+    3. Jack, Queen, King = 10.
+    4. Ace = 1 or 11.
+    Bonus Challenge after completion of project: 
+    Add Charlie Rule- If you have 5 or more cards without busting, you win automatically. 
+
+Notes:
+------
+- ASCII art uses raw strings (r""" """) to avoid escape errors.
+- Extra "side quests" (animations, themed graphics, etc.) 
+  are planned but not yet implemented.
+- Side Quest (These quest should complete after the main quest):
+  Add gifs or animations for the rules of Black Jack:
+  1. Limit Breaker from Final Fantasy
+  2. Joker from Batman
+  3. Jack Black the actor, Queen the singer, King from Tekken (maybe something more universal)
+  4. Ace (Look up something universal)
+=====================================================================
+"""
+
+
+# ================================================================
 # Black Jack Project
 # 🃏 Blackjack Game House Rules:
+# ================================================================
 # 1. 1️⃣ The deck is unlimited in size.
 # 2. 🚫 There are no jokers.
 # 3. 👑 Jack, Queen, King = 10.
 # 4. 🂡 Ace = 1 or 11.
-# 5. 🖐️ If you have 5 or more cards without busting, you win automatically (🧱 Charlie Rule).
+# 5. 🖐️ (Day 11 Rule) — If you have 5 or more cards without busting,
+#    you automatically win. (🧱 Charlie Rule)
+#
+# Side Quest ideas (to be added later):
+# - Add gifs/animations to explain each card/rule theme
+# ================================================================
 
-# Side Quest (These quest should complete after the main quest):
-# Add gifs or animations for the rules of Black Jack:
-# 1. Limit Breaker from Final Fantasy
-# 2. Joker from Batman
-# 3. Jack Black the actor, Queen the singer, King from Tekken (maybe something more universal)
-# 4. Ace (Look up something universal)
 
-# Main Quest
-# Step 1: Set values for cards
-king = 10
-jack = 10
-queen = 10
-ace = {"low": 1, "high": 11}
-cards = [2, 3, 4, 5, 6, 7, 8, 9, ace, king, jack, queen]
-
-# Step 2: Intro
-greeting = """
+# ================================================================
+# Greeting Banner (ASCII Art)
+# ------------------------------------------------
+# Using a raw string (r"""...""") so Python doesn’t misinterpret
+# backslashes in the ASCII art as escape characters.
+# This banner is printed when the game begins.
+# ================================================================
+greeting = r"""
   ______   __                                                               __  __         
  /      \ |  \                                                             |  \|  \        
 |  $$$$$$\| $$____    ______    ______    ______   ______    ______    ____| $$| $$_______ 
@@ -64,18 +101,44 @@ greeting = """
 | $$$$$$$\| $$ /      $$| $$      | $$   $$       |  \  | $$ /      $$| $$      | $$   $$  
 | $$__/ $$| $$|  $$$$$$$| $$_____ | $$$$$$\       | $$__| $$|  $$$$$$$| $$_____ | $$$$$$\  
 | $$    $$| $$ \$$    $$ \$$     \| $$  \$$\       \$$    $$ \$$    $$ \$$     \| $$  \$$\ 
- \$$$$$$$  \$$  \$$$$$$$  \$$$$$$$ \$$   \$$        \$$$$$$   \$$$$$$$  \$$$$$$$ \$$   \$$                                                                                            
+ \$$$$$$$  \$$  \$$$$$$$  \$$$$$$$ \$$   \$$        \$$$$$$   \$$$$$$$  \$$$$$$$ \$$   \$$ 
 """
 
-input('''Welcome to Sherrard's House of Black Jack. 
+
+# ================================================================
+# Welcome Screen Loop
+# ------------------------------------------------
+# - Displays the game rules and waits for the player to press Enter.
+# - input() returns an empty string "" when the user just presses Enter.
+# - While loop keeps asking until the correct input (just Enter) is given.
+# - Once Enter is pressed, the greeting banner is shown and loop breaks.
+# ================================================================
+while True:
+    if input('''Welcome to Sherrard's House of Black Jack.
 Here are the rules:
 🃏 Sherrard's House Rules:
 1️⃣ The deck is unlimited in size.
 🚫 There are no jokers.
 👑 Jack, Queen, King = 10.
 🂡 Ace = 1 or 11.
-🖐️ If you have 5 or more cards without busting, you win automatically (🧱 Charlie Rule).
 Press Enter to begin...
-''')
+''') == "":        # Only accept empty input (Enter key)
+        print(greeting)
+        break       # Exit loop once correct input is received
 
-print(greeting)
+
+# ================================================================
+# Alternative Version (commented out)
+# ------------------------------------------------
+# - This version saves the player's input to a variable (`choice`)
+#   instead of checking input() directly.
+# - Both approaches work; storing in a variable can make it easier
+#   to reuse or debug the input later.
+# ================================================================
+# while True:
+#     choice = input('''Welcome to Sherrard's House of Black Jack:
+# (rules repeated here)...
+# ''')
+#     if choice == "":
+#         print(greeting)
+#         break
