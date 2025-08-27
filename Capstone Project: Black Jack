@@ -1,3 +1,6 @@
+import random
+
+
 """
 =====================================================================
 Sherrard's House of Black Jack 🎴
@@ -142,3 +145,52 @@ Press Enter to begin...
 #     if choice == "":
 #         print(greeting)
 #         break
+
+# Deck of cards
+deck_of_cards = [1,2,3,4,5,6,7,8,9,10,10,10,11]
+
+# Player cards
+player_cards =  [random.choice(deck_of_cards), random.choice(deck_of_cards)]
+
+# Player score
+player_score = sum(player_cards)
+
+
+# Computer cards
+computer_cards =  [random.choice(deck_of_cards)]
+
+# Computer score
+computer_score = sum(computer_cards)
+
+# Result of 1st Round
+print(f'''Your cards: {player_cards}, current score: {player_score}
+Computer's first card: {computer_cards}: {computer_score}''')
+
+# 1st time Ask player if they want another card
+another_card = input("Type 'y' to get another card, type 'n' to pass:").lower()
+print(another_card)
+
+if another_card == 'y'.lower():
+    # Add another card to the player's hand
+    player_cards.append(random.choice(deck_of_cards))
+
+    # Update player's score
+    player_score = sum(player_cards)
+
+# Player's hand stays the same
+else:
+    player_cards = player_cards
+    player_score = player_score
+
+# *For tomorrow* 
+# Update computers hand
+
+# Result of 2nd Round
+print(f'''Your cards: {player_cards}, current score: {player_score}
+Computer's first card: {computer_cards}: {computer_score}''')
+
+# 2nd time Ask player if they want another card
+another_card = input("Type 'y' to get another card, type 'n' to pass:").lower()
+print(another_card)
+
+
