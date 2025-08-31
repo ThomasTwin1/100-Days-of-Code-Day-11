@@ -6,7 +6,7 @@ import random
 Sherrard's House of Black Jack 🎴
 =====================================================================
 Author: Sherrard Antoine Thomas II
-Date:   26 August 2025
+Date:   28 August 2025
 Version: 1.0
 Course:  100 Days of Python - Day 11 Project
 
@@ -174,23 +174,32 @@ if another_card == 'y'.lower():
     # Add another card to the player's hand
     player_cards.append(random.choice(deck_of_cards))
 
+
+
     # Update player's score
     player_score = sum(player_cards)
+    print(f'''Your cards: {player_cards}, current score: {player_score}
+    Computer's first card: {computer_cards}: {computer_score}''')
 
 # Player's hand stays the same
 else:
     player_cards = player_cards
     player_score = player_score
+    print(f'''Your cards: {player_cards}, current score: {player_score}
+    Computer's first card: {computer_cards}: {computer_score}''')
 
-# *For tomorrow* 
-# Update computers hand
+# update computer hand
+while sum(computer_cards) <= 16:
+    computer_cards.append(random.choice(deck_of_cards))
 
-# Result of 2nd Round
-print(f'''Your cards: {player_cards}, current score: {player_score}
-Computer's first card: {computer_cards}: {computer_score}''')
+# # Result of 2nd Round
+# print(f'''Your cards: {player_cards}, current score: {player_score}
+# Computer's first card: {computer_cards}: {computer_score}''')
+#
+# # 2nd time Ask player if they want another card
+# another_card = input("Type 'y' to get another card, type 'n' to pass:").lower()
+# print(another_card)
 
-# 2nd time Ask player if they want another card
-another_card = input("Type 'y' to get another card, type 'n' to pass:").lower()
-print(another_card)
+
 
 
