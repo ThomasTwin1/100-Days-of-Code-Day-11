@@ -1,77 +1,49 @@
 import random
-
+import sys
 
 """
 =====================================================================
 Sherrard's House of Black Jack 🎴
 =====================================================================
-Author: Sherrard Antoine Thomas II
-Date:   28 August 2025
+Author:  Sherrard Antoine Thomas II
+Date:    28 August 2025
 Version: 1.0
 Course:  100 Days of Python - Day 11 Project
 
 Description:
 ------------
 A simple text-based Blackjack game with custom house rules.
-This program:
+
+Features:
 - Greets the player with ASCII art and rules.
-- Requires pressing Enter to begin.
-- Implements the following rules:
+- Starts on Enter key.
+- Card rules:
     1. The deck is unlimited in size.
     2. There are no jokers.
     3. Jack, Queen, King = 10.
-    4. Ace = 1 or 11.
-    Bonus Challenge after completion of project: 
-    Add Charlie Rule- If you have 5 or more cards without busting, you win automatically. 
+    4. Ace = 11 (Note: basic version; no dynamic 1/11 switching yet)
 
 Notes:
 ------
-- ASCII art uses raw strings (r""" """) to avoid escape errors.
-- Extra "side quests" (animations, themed graphics, etc.) 
-  are planned but not yet implemented.
-- Side Quest (These quest should complete after the main quest):
-  Add gifs or animations for the rules of Black Jack:
-  1. Limit Breaker from Final Fantasy
-  2. Joker from Batman
-  3. Jack Black the actor, Queen the singer, King from Tekken (maybe something more universal)
-  4. Ace (Look up something universal)
+- ASCII art uses a raw string (r""" """) to avoid escape errors.
+- “Charlie Rule” (5+ cards without bust) is documented for later but not yet implemented.
+- Dealer currently draws to 16 before player decisions (kept as-is to avoid large changes).
 =====================================================================
 """
 
-
-# ================================================================
-# Black Jack Project
-# 🃏 Blackjack Game House Rules:
-# ================================================================
-# 1. 1️⃣ The deck is unlimited in size.
-# 2. 🚫 There are no jokers.
-# 3. 👑 Jack, Queen, King = 10.
-# 4. 🂡 Ace = 1 or 11.
-# 5. 🖐️ (Day 11 Rule) — If you have 5 or more cards without busting,
-#    you automatically win. (🧱 Charlie Rule)
-#
-# Side Quest ideas (to be added later):
-# - Add gifs/animations to explain each card/rule theme
-# ================================================================
-
-
 # ================================================================
 # Greeting Banner (ASCII Art)
-# ------------------------------------------------
-# Using a raw string (r"""...""") so Python doesn’t misinterpret
-# backslashes in the ASCII art as escape characters.
-# This banner is printed when the game begins.
 # ================================================================
 greeting = r"""
   ______   __                                                               __  __         
  /      \ |  \                                                             |  \|  \        
 |  $$$$$$\| $$____    ______    ______    ______   ______    ______    ____| $$| $$_______ 
-| $$___\$$| $$    \  /      \  /      \  /      \ |      \  /      \  /      $$ \$/       \\
+| $$___\$$| $$    \  /      \  /      \  /      \ |      \  /      \  /      $$ \$/       \
  \$$    \ | $$$$$$$\|  $$$$$$\|  $$$$$$\|  $$$$$$\ \$$$$$$\|  $$$$$$\|  $$$$$$$  |  $$$$$$$
  _\$$$$$$\| $$  | $$| $$    $$| $$   \$$| $$   \$$/      $$| $$   \$$| $$  | $$   \$$    \ 
-|  \__| $$| $$  | $$| $$$$$$$$| $$      | $$     |  $$$$$$$| $$      | $$__| $$   _\$$$$$$\\
+|  \__| $$| $$  | $$| $$$$$$$$| $$      | $$     |  $$$$$$$| $$      | $$__| $$   _\$$$$$$\
  \$$    $$| $$  | $$ \$$     \| $$      | $$      \$$    $$| $$       \$$    $$  |       $$ 
-  \$$$$$$  \$$   \$$  \$$$$$$$ \$$       \$$       \$$$$$$$ \$$        \$$$$$$$   \$$$$$$$ 
+  \$$$$$$  \$$   \$$  \$$$$$$$ \$$       \$$       \$$$$$$$ \$$        \$$$$$$$   \$$$$$$$  
 
 
  __    __                                                                                  
@@ -89,11 +61,11 @@ greeting = r"""
            /      \                                                                        
   ______  |  $$$$$$\                                                                       
  /      \ | $$_  \$$                                                                       
-|  $$$$$$\| $$ \                                                                          
-| $$  | $$| $$$$                                                                          
-| $$__/ $$| $$                                                                           
- \$$    $$| $$                                                                           
-  \$$$$$$  \$$                                                                           
+|  $$$$$$\| $$ \                                                                           
+| $$  | $$| $$$$                                                                           
+| $$__/ $$| $$                                                                             
+ \$$    $$| $$                                                                             
+  \$$$$$$  \$$                                                                             
 
 
  _______   __                      __                 _____                      __        
@@ -107,14 +79,8 @@ greeting = r"""
  \$$$$$$$  \$$  \$$$$$$$  \$$$$$$$ \$$   \$$        \$$$$$$   \$$$$$$$  \$$$$$$$ \$$   \$$ 
 """
 
-
 # ================================================================
 # Welcome Screen Loop
-# ------------------------------------------------
-# - Displays the game rules and waits for the player to press Enter.
-# - input() returns an empty string "" when the user just presses Enter.
-# - While loop keeps asking until the correct input (just Enter) is given.
-# - Once Enter is pressed, the greeting banner is shown and loop breaks.
 # ================================================================
 while True:
     if input('''Welcome to Sherrard's House of Black Jack.
@@ -123,83 +89,78 @@ Here are the rules:
 1️⃣ The deck is unlimited in size.
 🚫 There are no jokers.
 👑 Jack, Queen, King = 10.
-🂡 Ace = 1 or 11.
+🂡 Ace = 11 (basic version)
 Press Enter to begin...
-''') == "":        # Only accept empty input (Enter key)
+''') == "":
         print(greeting)
-        break       # Exit loop once correct input is received
+        break
 
-
-# ================================================================
-# Alternative Version (commented out)
-# ------------------------------------------------
-# - This version saves the player's input to a variable (`choice`)
-#   instead of checking input() directly.
-# - Both approaches work; storing in a variable can make it easier
-#   to reuse or debug the input later.
-# ================================================================
-# while True:
-#     choice = input('''Welcome to Sherrard's House of Black Jack:
-# (rules repeated here)...
-# ''')
-#     if choice == "":
-#         print(greeting)
-#         break
-
-# Deck of cards
+# Deck of cards (basic Ace handling = 11)
 deck_of_cards = [1,2,3,4,5,6,7,8,9,10,10,10,11]
 
-# Player cards
-player_cards =  [random.choice(deck_of_cards), random.choice(deck_of_cards)]
-
-# Player score
+# Player cards & score
+player_cards = [random.choice(deck_of_cards), random.choice(deck_of_cards)]
 player_score = sum(player_cards)
 
-
-# Computer cards
-computer_cards =  [random.choice(deck_of_cards)]
-
-# Computer score
-computer_score = sum(computer_cards)
-
-# Result of 1st Round
-print(f'''Your cards: {player_cards}, current score: {player_score}
-Computer's first card: {computer_cards}: {computer_score}''')
-
-# 1st time Ask player if they want another card
-another_card = input("Type 'y' to get another card, type 'n' to pass:").lower()
-print(another_card)
-
-if another_card == 'y'.lower():
-    # Add another card to the player's hand
-    player_cards.append(random.choice(deck_of_cards))
-
-
-
-    # Update player's score
-    player_score = sum(player_cards)
-    print(f'''Your cards: {player_cards}, current score: {player_score}
-    Computer's first card: {computer_cards}: {computer_score}''')
-
-# Player's hand stays the same
-else:
-    player_cards = player_cards
-    player_score = player_score
-    print(f'''Your cards: {player_cards}, current score: {player_score}
-    Computer's first card: {computer_cards}: {computer_score}''')
-
-# update computer hand
+# Computer cards & drawing (kept before player decisions to avoid big changes)
+computer_cards = [random.choice(deck_of_cards)]
 while sum(computer_cards) <= 16:
     computer_cards.append(random.choice(deck_of_cards))
+computer_score = sum(computer_cards)
 
-# # Result of 2nd Round
-# print(f'''Your cards: {player_cards}, current score: {player_score}
-# Computer's first card: {computer_cards}: {computer_score}''')
-#
-# # 2nd time Ask player if they want another card
-# another_card = input("Type 'y' to get another card, type 'n' to pass:").lower()
-# print(another_card)
+# First reveal
+print(f"Your cards: {player_cards}, current score: {player_score}")
+print(f"Computer's first card: {computer_cards[0]}")
 
+# First decision
+another_card = input("Type 'y' to get another card, type 'n' to pass: ").lower()
+print(another_card)
 
+# Ask player up to 3 more times (original intent)
+for i in range(3):
+    if another_card == 'y':
+        # Player hits
+        player_cards.append(random.choice(deck_of_cards))
+        player_score = sum(player_cards)
 
+        print(f"Your cards: {player_cards}, current score: {player_score}")
+        print(f"Computer's first card: {computer_cards[0]}")
 
+        # Immediate bust check
+        if player_score > 21:
+            print(f"You went over 21! Final hand: {player_cards}, score: {player_score}")
+            print(f"Computer's cards: {computer_cards}, computer score: {computer_score}")
+            print("You lose 💥")
+            sys.exit(0)
+
+        # Ask again
+        another_card = input("Type 'y' to get another card, type 'n' to pass: ").lower()
+        print(another_card)
+
+    else:
+        # Player passes early, stop asking
+        break
+
+# ===== Final Outcome Check (runs if we didn't exit on bust) =====
+# Recompute (kept explicit for clarity)
+player_score = sum(player_cards)
+computer_score = sum(computer_cards)
+
+# Show final hands
+print(f"\nYour cards: {player_cards}, current score: {player_score}")
+print(f"Computer's cards: {computer_cards}, computer score: {computer_score}")
+
+# Decide winner with explicit parentheses for clarity
+if (player_score > 21) and (computer_score <= 21):
+    print("You lose")
+elif (computer_score > 21) and (player_score <= 21):
+    print("You win")
+elif (player_score > computer_score) and (player_score <= 21):
+    print("You win")
+elif (computer_score > player_score) and (computer_score <= 21):
+    print("You lose")
+elif (player_score == computer_score) and (player_score <= 21):
+    print("Draw")
+else:
+    # Covers both over 21 (both bust) or any unexpected edge
+    print("No result — both busted or unexpected state.")
